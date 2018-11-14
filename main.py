@@ -1,9 +1,12 @@
+from Transaction import *
 from TronAPI import *
-from Binance import *
+from QuickDemo import *
 
 def main():
     address = 'TMZtJCtmk7ykoCFn5WTSKbedgv8xFuucfz';
-    print(gettransactions(address))
+    quickDemo()
+
+
 
 if __name__ == "__main__":
     main()
