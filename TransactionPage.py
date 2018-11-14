@@ -37,7 +37,7 @@ class TransactionPage(Frame):
         name = self.item.get()
         quantity = self.quantity.get()
         item = Item(name, quantity)
-        info = name + "                 " + quantity + "                " + str(float(item.price)*float(item.quantity))
+        info = name + (" "*5) + quantity + (" "*5) + str(float(item.price)*float(item.quantity))
         Label(self.ledger, text=info).pack()
 
         self.bill.add(item)

@@ -1,3 +1,5 @@
+from Inventory import inventory
+
 '''
 
     Item is a single type of item in the bill
@@ -13,10 +15,8 @@ class Item:
     def __init__(self, name, quantity):
         self.name     = name
         self.quantity = quantity
-        with open('localdata/inventory.json', 'r') as myfile:
-            data = json.loads(myfile.read())
-        if name in data.keys():
-            self.price = data[name]
+        if name in inventory.items:
+            self.price = inventory.items[name]
         else:
             raise LookupError("This Item does not have a price!")
 
