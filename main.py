@@ -1,12 +1,15 @@
-from Transaction import *
-from TronAPI import *
 from QuickDemo import *
+from MainPage import *
+import tkinter as tk
+import json
 
 def main():
-    address = 'TMZtJCtmk7ykoCFn5WTSKbedgv8xFuucfz';
-    quickDemo()
-
-
+    #quickDemo()
+    root = tk.Tk()
+    mainpage = MainPage(root)
+    mainpage.pack(side="top", fill="both", expand=True)
+    root.wm_geometry("1500x1000")
+    root.mainloop()
 
 if __name__ == "__main__":
     main()
