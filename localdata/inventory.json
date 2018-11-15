@@ -1,5 +1,7 @@
 {
-	"Apples": "0.2",
-	"Noodles": "1.5",
-	"Cabbage":"1"
+	"Apple": "0.2",
+	"Noodle": "1.5",
+	"Cabbage":"1",
+	"Hat":"5",
+	"Pizza":"2"
 }

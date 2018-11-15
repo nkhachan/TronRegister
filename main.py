@@ -1,20 +1,20 @@
 from QuickDemo import *
-from MainPage import *
+from MainApp import *
+from FullDemo import *
 import tkinter as tk
 import json
 
 def main():
-    #quickDemo()
-    root = tk.Tk()
+    val = input("Type either q, f, a for the QuickDemo, FullDemo, and App respectfully\n")
 
-    # eliminate the titlebar
-    #root.overrideredirect(1)
-
-    mainpage = MainPage(root)
-    mainpage.pack(side="top", fill="both", expand=True)
-
-    root.wm_geometry("1500x1000")
-    root.mainloop()
+    if (val == "q"):
+        quickDemo()
+    elif (val == "f"):
+        fullDemo()
+    elif (val == "a"):
+        MainApp().run()
+    else:
+        val = input("Incorrect Input!")
 
 if __name__ == "__main__":
     main()
