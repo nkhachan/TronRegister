@@ -6,7 +6,22 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from Login import *
 
-Builder.load_file('kv_files/login.kv')
+Builder.load_string("""
+<LoginPage>
+    BoxLayout:
+        orientation: 'vertical'
+        TextInput:
+            id: username
+            text: "Username"
+        TextInput:
+            id: passwd
+            text: "Password"
+        Button:
+            id: loginbutton
+            text: "go"
+            on_release: root.verify_credentials()
+
+""")
 
 
 class LoginPage(BoxLayout):
