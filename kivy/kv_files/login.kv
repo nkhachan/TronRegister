@@ -1,0 +1,15 @@
+# login Page
+
+<LoginPage>
+    BoxLayout:
+        orientation: 'vertical'
+        TextInput:
+            id: username
+            text: "Username"
+        TextInput:
+            id: passwd
+            text: "Password"
+        Button:
+            id: loginbutton
+            text: "go"
+            on_release: root.verify_credentials()

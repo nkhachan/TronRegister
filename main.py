@@ -1,8 +1,11 @@
-from QuickDemo import *
-from MainApp import *
-from FullDemo import *
-import tkinter as tk
-import json
+import sys
+import os
+sys.path.append(os.getcwd() + "/src")
+sys.path.append(os.getcwd() + "/kivy")
+sys.path.append(os.getcwd() + "/tkinter")
+print(sys.path)
+
+from runApp import runApp
 
 def main():
     val = input("Type either q, f, a for the QuickDemo, FullDemo, and App respectfully\n")
@@ -12,7 +15,7 @@ def main():
     elif (val == "f"):
         fullDemo()
     elif (val == "a"):
-        MainApp().run()
+        runApp()
     else:
         val = input("Incorrect Input!")
 

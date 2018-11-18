@@ -8,7 +8,6 @@ from Inventory import inventory
         Name of Item
         Quantity
 '''
-import json
 
 class Item:
 
