@@ -8,12 +8,29 @@ from kivy.lang import Builder
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 
+SPACING = 25
 
 Builder.load_string("""
-<AddItems>
+<TransactionPage>
     canvas.before:
         Color:
-            rgba: 0, 46, 140, 0.6
+            rgb: 0.14, 0.14, 0.14
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            
+<AddItemsBar>
+    canvas.before:
+        Color:
+            rgb: 0.19, 0.19, 0.19
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<FinishTransPage>
+    canvas.before:
+        Color:
+            rgb: 0.19, 0.19, 0.19
         Rectangle:
             pos: self.pos
             size: self.size
@@ -23,7 +40,8 @@ Builder.load_string("""
 
 class ItemQuantityBar(GridLayout):
     def __init__(self, parent=None):
-        super().__init__(cols=2, rows=4)
+        super().__init__(cols=2, rows=1)
+        self.spacing = SPACING
         self.item = TextInput(text='Item', font_size=30)
         self.quantity = TextInput(text='Quantity', font_size=30)
 
@@ -51,6 +69,7 @@ class FinishTransBar(GridLayout):
 class AddItems(GridLayout):
     def __init__(self, parent=None):
         super().__init__(cols=1, rows=4)
+        self.spacing = SPACING
         self.itemquantity = ItemQuantityBar()
 
         self.add_widget(self.itemquantity)
@@ -75,6 +94,8 @@ class Tally(GridLayout):
 class TransactionPage(GridLayout):
     def __init__(self, parent=None):
         super().__init__(cols=2, rows=1)
+        self.padding = SPACING
+        self.spacing = SPACING
         self.additems = AddItems()
         self.tally = Tally()
 
