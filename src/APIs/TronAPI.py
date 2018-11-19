@@ -169,6 +169,9 @@ def printtransfers(address):
         print(Transaction(transfer))
 
 
+def getformattedBalance(address):
+    return formatBalance(getbalance(address))
+
 def formatBalance(balance):
     '''
         Convert API balance term to a traditional version

@@ -1,6 +1,7 @@
-from kivy.graphics import Color, Rectangle
 from LoginPage import *
-from TransactionPage import MainPage
+from MainPage import MainPage
+from kivy.config import Config
+from kivy.app import App
 
 class MainApp(App):
 
@@ -8,5 +9,8 @@ class MainApp(App):
         super(MainApp, self).__init__(**kwargs)
 
     def build(self):
+
+        Config.set('graphics', 'width', '1500')
+        Config.set('graphics', 'height', '1000')
         return MainPage()
 

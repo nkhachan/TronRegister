@@ -36,3 +36,13 @@ class Bill:
         print("The total sum is : $", str(self.sum))
         print("." * 100)
 
+    def toString(self):
+        billstring = ""
+        for item in self.items:
+            name = self.items[item].name
+            length = len(name)
+            billstring += name +  " "*(40-length) +  self.items[item].quantity +  " x "  +  str(self.items[item].price) + "\n"
+
+        return billstring
+
+bill = Bill()

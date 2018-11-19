@@ -5,8 +5,9 @@
         This allows you to get updates to your wallet and check your balance
 
 '''
-
+import sys
 import time
+import os
 from TronAPI import *
 
 def quickDemo():

@@ -1,6 +1,8 @@
 import sys
 import os
 sys.path.append(os.getcwd() + "/src")
+sys.path.append(os.getcwd() + "/src/APIs")
+sys.path.append(os.getcwd() + "/src/demos")
 sys.path.append(os.getcwd() + "/kivy")
 sys.path.append(os.getcwd() + "/tkinter")
 print(sys.path)
@@ -8,6 +10,8 @@ print(sys.path)
 from runApp import runApp
 from TransactionPage import *
 from MainApp import *
+from QuickDemo import quickDemo
+from FullDemo import fullDemo
 
 def main():
     val = input("Type either q, f, a for the QuickDemo, FullDemo, and App respectfully\n")
