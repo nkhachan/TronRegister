@@ -1,9 +1,10 @@
 import sys
 import os
+sys.path.append("/home/noopur/kivy")
 sys.path.append(os.getcwd() + "/src")
 sys.path.append(os.getcwd() + "/src/APIs")
 sys.path.append(os.getcwd() + "/src/demos")
-sys.path.append(os.getcwd() + "/kivy")
+sys.path.append(os.getcwd() + "/kivy_stuff")
 sys.path.append(os.getcwd() + "/tkinter")
 print(sys.path)
 
