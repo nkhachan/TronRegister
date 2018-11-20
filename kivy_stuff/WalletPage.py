@@ -8,7 +8,7 @@ from Binance import getTRXtoUSD
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.lang import Builder
-#from kivy.clock import Clock
+from kivy.clock import Clock
 
 SPACING = 25
 
@@ -101,7 +101,7 @@ class ConversionDisplay(GridLayout):
         super().__init__(cols=1, rows=1)
         self.conversion = Label(text='Conversion', font_size="40px")
         self.add_widget(self.conversion)
-        #Clock.schedule_interval(self.getConversion, 1)
+        Clock.schedule_interval(self.getConversion, 1)
 
     def getConversion(self, dt):
         newconversion = getTRXtoUSD()
@@ -112,7 +112,7 @@ class TronPowerDisplay(GridLayout):
         super().__init__(cols=1, rows=1)
         self.tronpower = Label(text='TronPower', font_size="40px")
         self.add_widget(self.tronpower)
-        #Clock.schedule_interval(self.getBalance, 1)
+        Clock.schedule_interval(self.getBalance, 1)
 
     def getBalance(self, dt):
         newbalance = getformattedBalance(user.address)
@@ -123,7 +123,7 @@ class BalanceDisplay(GridLayout):
         super().__init__(cols=1, rows=1)
         self.balance = Label(text='SomeNumber', font_size="40px")
         self.add_widget(self.balance)
-        #Clock.schedule_interval(self.getBalance, 1)
+        Clock.schedule_interval(self.getBalance, 1)
 
     def getBalance(self, dt):
         newbalance = getformattedBalance(user.address)
