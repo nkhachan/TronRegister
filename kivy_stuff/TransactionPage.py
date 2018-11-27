@@ -64,7 +64,10 @@ class AddItemsBar(GridLayout):
 class FinishTransBar(GridLayout):
     def __init__(self, parent=None):
         super().__init__(cols=1, rows=4)
-        self.add_widget(Button(text="Submit Transaction", font_size=30))
+        self.add_widget(Button(text="Submit Transaction", font_size=30, on_press=self.finishtransaction))
+
+    def finishtransaction(self, dt):
+        bill.billtoprinter()
 
 class AddItems(GridLayout):
     def __init__(self, parent=None):

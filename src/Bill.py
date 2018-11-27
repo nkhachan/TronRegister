@@ -4,6 +4,8 @@
 
 '''
 from Item import *
+from QRCode import *
+from User import user
 
 class Bill:
 
@@ -26,15 +28,7 @@ class Bill:
        # self.sum += float(item.quantity)*float(self.items[item.name].price)
 
     def printBill(self):
-        print("."*100)
-
-        for item in self.items:
-            name = self.items[item].name
-            length = len(name)
-            print(name, " "*(50-length), self.items[item].quantity, " x " , str(self.items[item].price))
-
-        print("The total sum is : $", str(self.sum))
-        print("." * 100)
+        print(self.toString())
 
     def toString(self):
         billstring = ""
@@ -44,5 +38,13 @@ class Bill:
             billstring += name +  " "*(40-length) +  self.items[item].quantity +  " x "  +  str(self.items[item].price) + "\n"
 
         return billstring
+
+    def billtoprinter(self):
+        qrcode = createQR(user.address)
+        self.clearbill()
+
+    def clearbill(self):
+        self.items = {}
+        self.sum = 0
 
 bill = Bill()
