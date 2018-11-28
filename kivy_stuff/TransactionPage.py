@@ -68,6 +68,7 @@ class FinishTransBar(GridLayout):
 
     def finishtransaction(self, dt):
         bill.billtoprinter()
+        self.parent.updateTally()
 
 class AddItems(GridLayout):
     def __init__(self, parent=None):
@@ -82,6 +83,9 @@ class AddItems(GridLayout):
     def additem(self, callback):
         bill.add(self.itemquantity.getitem(), self.itemquantity.getquantity())
         bill.printBill()
+        self.parent.updateTally()
+
+    def updateTally(self):
         self.parent.updateTally()
 
 
