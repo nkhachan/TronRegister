@@ -43,6 +43,7 @@ class Bill:
         qrcode = createQR(user.address)
         self.clearbill()
 
+
     def clearbill(self):
         self.items = {}
         self.sum = 0
