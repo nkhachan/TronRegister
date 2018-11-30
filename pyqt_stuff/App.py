@@ -3,7 +3,7 @@ import os
 sys.path.append(os.getcwd() + "/../src")
 from PyQt4 import QtGui, QtCore
 from User import user
-#from Binance import *
+from CoinMarketCap import *
 from TronAPI import *
 from Inventory import *
 from Bill import bill
@@ -116,7 +116,7 @@ class WalletGrid(QtGui.QGridLayout):
 
     def updateWallet(self):
         self.balance.setText(str(getformattedBalance(user.address)))
-        self.exchange.setText("")
+        self.exchange.setText(str(getTRXtoUSD()))
 
 
 class MainWidget(QtGui.QTabWidget):
