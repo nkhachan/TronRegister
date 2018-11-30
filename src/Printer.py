@@ -29,8 +29,7 @@ def printOutFinalBill():
     # printer.underline = adafruit_thermal_printer.UNDERLINE_THICK
     printer.print('-------------------------------')
     printer.justify = adafruit_thermal_printer.JUSTIFY_CENTER
-    for item in bill.items:
-        printer.print(item.name + "   " + item.price + "  " + item.quantity + "  " + item.price*item.quantity)
+    printer.print(bill.toString())
     printer.print('-------------------------------')
 
     printer.bold = True
