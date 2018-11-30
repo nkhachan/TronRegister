@@ -3,12 +3,16 @@ import os
 sys.path.append(os.getcwd() + "/../src")
 from PyQt4 import QtGui, QtCore
 from User import user
-from Binance import *
+#from Binance import *
 from TronAPI import *
 from Inventory import *
 from Bill import bill
 
 WINDOW_SIZE = 1000
+
+class Block(QtGui.QWidget):
+    def __init__(self, parent=None):
+        super(InventoryList, self).__init__(parent)
 
 class InventoryList(QtGui.QWidget):
     def __init__(self, parent=None):
@@ -83,7 +87,7 @@ class WalletGrid(QtGui.QGridLayout):
 
         self.balance = QtGui.QLabel("")
         self.power = QtGui.QLabel("")
-        self.exchange = QtGui.QLabel(str(getTRXtoUSD()))
+        self.exchange = QtGui.QLabel("")
 
         self.toBox = QtGui.QLabel("toBox")
         self.fromBox = QtGui.QLabel("fromBox")
@@ -112,7 +116,7 @@ class WalletGrid(QtGui.QGridLayout):
 
     def updateWallet(self):
         self.balance.setText(str(getformattedBalance(user.address)))
-        self.exchange.setText(str(getTRXtoUSD()))
+        self.exchange.setText("")
 
 
 class MainWidget(QtGui.QTabWidget):
