@@ -7,6 +7,7 @@ from CoinMarketCap import *
 from TronAPI import *
 from Inventory import *
 from Bill import bill
+from Printer import *
 
 WINDOW_SIZE = 1000
 
@@ -131,7 +132,8 @@ class TransGrid(QtGui.QGridLayout):
         self.tally.clear()
         self.sum.clear()
         self.quantity.clear()
-        bill.billtoprinter()
+        printOutFinalBill()
+        bill.clearbill()
 
 class WalletGrid(QtGui.QGridLayout):
     def __init__(self, parent=None):

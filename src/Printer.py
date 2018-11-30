@@ -1,6 +1,7 @@
+from Bill import bill
+
 import adafruit_thermal_printer
 import serial
-from Bill import bill
 
 def printOutFinalBill():
 

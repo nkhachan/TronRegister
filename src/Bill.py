@@ -6,7 +6,6 @@
 from Item import *
 from QRCode import *
 from User import user
-from Printer import *
 
 class Bill:
 
@@ -21,13 +20,6 @@ class Bill:
             self.items[name] = Item(name, quantity)
         self.sum += float(quantity)*float(self.items[name].price)
 
-    #def add(self, item):
-     #   if (item.name in self.items.keys()):
-      #      self.items[item.name].add(item.quantity)
-       # else :
-       #     self.items[item.name] = item
-       # self.sum += float(item.quantity)*float(self.items[item.name].price)
-
     def printBill(self):
         print(self.toString())
 
@@ -39,11 +31,6 @@ class Bill:
             billstring += name +  " "*(40-length) +  self.items[item].quantity +  " x "  +  str(self.items[item].price) + "\n"
 
         return billstring
-
-    def billtoprinter(self):
-        qrcode = createQR(user.address)
-        printOutFinalBill()
-        self.clearbill()
 
 
     def clearbill(self):
