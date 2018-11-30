@@ -34,34 +34,32 @@ class InventoryList(QtGui.QWidget):
 class TransGrid(QtGui.QGridLayout):
     def __init__(self, parent=None):
         super(TransGrid, self).__init__(parent)
-        self.setSpacing(30)
+        self.setSpacing(50)
         self.list = InventoryList()
 
         self.quantity = QtGui.QLineEdit()
-        self.quantity.setStyleSheet("""QLineEdit{background:rgb(130, 224, 170);}""")
 
-        self.addItemButton = QtGui.QPushButton("Push")
-        self.addItemButton.setStyleSheet("""QPushButton{background:rgb(130, 224, 170);}""")
+        self.addItemButton = QtGui.QPushButton("Add Item")
         self.addItemButton.clicked.connect(self.addProduct)
 
         self.finishTransaction = QtGui.QPushButton("Finish Transaction")
-        self.finishTransaction.setStyleSheet("""QPushButton{background:rgb(130, 224, 170);}""")
         self.finishTransaction.clicked.connect(self.finishtransaction)
 
         self.tally = QtGui.QListWidget()
-        self.tally.setStyleSheet("""QListWidget{background:rgb(130, 224, 170);}""")
 
         self.sum = QtGui.QLabel("")
-        self.sum.setStyleSheet("""QLabel{background:rgb(130, 224, 170);}""")
+
+        self.tally.setStyleSheet("""QListWidget{background:rgb(130, 224, 170);}""")
+        self.quantity.setStyleSheet("""QLineEdit{background:rgb(22, 160, 133);}""")
+        self.sum.setStyleSheet("""QLabel{background:rgb(22, 160, 133);}""")
+        self.addItemButton.setStyleSheet("""QPushButton{background:rgb(133, 193, 233);}""")
+        self.finishTransaction.setStyleSheet("""QPushButton{background:rgb(133, 193, 233);}""")
 
         self.addWidget(self.list, 0, 0, 3, 1)
         self.addWidget(self.quantity, 3, 0, 1, 1)
         self.addWidget(self.addItemButton, 4, 0, 1, 1)
-
         self.addWidget(self.finishTransaction, 4, 1, 1, 1)
-
         self.addWidget(self.tally, 0, 1, 3, 1)
-
         self.addWidget(self.sum, 3, 1, 1, 3)
 
 
@@ -104,9 +102,11 @@ class WalletGrid(QtGui.QGridLayout):
         self.setSpacing(30)
 
         self.address.setStyleSheet('.QLabel{{background: rgb({}, {}, {});}}'.format(130, 224, 170))
+
         self.balance.setStyleSheet('.QLabel{{background: rgb({}, {}, {});}}'.format(22, 160, 133))
         self.power.setStyleSheet('.QLabel{{background: rgb({}, {}, {});}}'.format(22, 160, 133))
         self.exchange.setStyleSheet('.QLabel{{background: rgb({}, {}, {});}}'.format(22, 160, 133))
+
         self.toBox.setStyleSheet('.QLabel{{background: rgb({}, {}, {});}}'.format(133, 193, 233))
         self.fromBox.setStyleSheet('.QLabel{{background: rgb({}, {}, {});}}'.format(133, 193, 233))
 
