@@ -2,17 +2,54 @@ import sys
 import os
 sys.path.append(os.getcwd() + "/../src")
 from PyQt4 import QtGui, QtCore
-from PyQt4.QtGui import *
 from User import user
 from Binance import *
 from TronAPI import *
+from Inventory import *
 
 WINDOW_SIZE = 1000
+
+class InventoryList(QtGui.QWidget):
+    def __init__(self, parent=None):
+        super(InventoryList, self).__init__(parent)
+        self.setStyleSheet("""QListWidget{background:QColor(200,100,150);}""")
+        self.chosenItem = "DummyItem"
+
+        self.list = QtGui.QListWidget(self)
+        self.list.setStyleSheet("background-color: (255, 0, 0)")
+        self.list.itemClicked.connect(self.choose)
+        self.fillInventory()
+
+        layout = QtGui.QHBoxLayout(self)
+        layout.addWidget(self.list)
+
+    def choose(self, item):
+        self.chosenItem = item.text()
+
+    def fillInventory(self):
+        for item in inventory.items:
+            self.list.addItem(item)
+
+
 
 class TransGrid(QtGui.QGridLayout):
     def __init__(self, parent=None):
         super(TransGrid, self).__init__(parent)
-        #self.addWidget(address, 0, 0)
+        self.list = InventoryList()
+        self.addWidget(self.list)
+
+        self.quantity = QtGui.QLineEdit()
+        self.addWidget(self.quantity)
+
+        self.addItemButton = QtGui.QPushButton("Push")
+        self.addItemButton.clicked.connect(self.addProduct)
+        self.addItemButton.setStyleSheet("color: (130, 224, 170)")
+        self.addWidget(self.addItemButton)
+
+
+    def addProduct(self):
+        print(self.list.chosenItem, self.quantity.text())
+
 
 class WalletGrid(QtGui.QGridLayout):
     def __init__(self, parent=None):

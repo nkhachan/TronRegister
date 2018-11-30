@@ -6,5 +6,4 @@ class Inventory:
         with open('localdata/inventory.json', 'r') as myfile:
             self.items = json.loads(myfile.read())
 
-
 inventory = Inventory()
