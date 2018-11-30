@@ -64,6 +64,7 @@ class FromAddressList(QtGui.QListWidget):
         else:
             lastTransaction = getlasttransactionobjectfrom(user.address)
             if (lastTransaction.hash not in self.cachedhashes):
+                QtGui.QMessageBox.information(QtGui.QWidget(), "To Success", "Address: " + lastTransaction.toAddress + " was successful")
                 self.cachedhashes.append(lastTransaction.hash)
                 self.addItem(lastTransaction.toStr())
 

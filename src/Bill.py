@@ -6,6 +6,7 @@
 from Item import *
 from QRCode import *
 from User import user
+from Printer import *
 
 class Bill:
 
@@ -41,6 +42,7 @@ class Bill:
 
     def billtoprinter(self):
         qrcode = createQR(user.address)
+        printOutFinalBill()
         self.clearbill()
 
 
