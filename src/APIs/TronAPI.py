@@ -98,6 +98,60 @@ def gettransfers(address):
         return response.json()["data"]
     return False
 
+def gettransfersto(address):
+    '''
+    GetTransfer API
+
+    :param address: The public address
+    :return:
+
+            A list of transfers (dictionaries) with the following info:
+
+            {
+              "id": "string",
+              "transactionHash": "string",
+              "block": 0,
+              "timestamp": "2018-11-13T22:22:34.141Z",
+              "transferFromAddress": "string",
+              "transferToAddress": "string",
+              "amount": 0,
+              "tokenName": "string",
+              "confirmed": true
+            }
+    '''
+    response = requests.get(scanendpoint + '/' + api + '/' +
+                            "transfer", params = {"to" : address})
+    if (response):
+        return response.json()["data"]
+    return False
+
+def gettransfersfrom(address):
+    '''
+    GetTransfer API
+
+    :param address: The public address
+    :return:
+
+            A list of transfers (dictionaries) with the following info:
+
+            {
+              "id": "string",
+              "transactionHash": "string",
+              "block": 0,
+              "timestamp": "2018-11-13T22:22:34.141Z",
+              "transferFromAddress": "string",
+              "transferToAddress": "string",
+              "amount": 0,
+              "tokenName": "string",
+              "confirmed": true
+            }
+    '''
+    response = requests.get(scanendpoint + '/' + api + '/' +
+                            "transfer", params = {"from" : address})
+    if (response):
+        return response.json()["data"]
+    return False
+
 
 def getlasttransfer(address):
     '''
@@ -121,6 +175,49 @@ def getlasttransfer(address):
         return lasttransfer
     return False
 
+def getlasttransferto(address):
+    '''
+
+    :param address:
+    :return:
+
+        A dictionary of info about the latest transfer
+
+    '''
+    response = requests.get(scanendpoint + '/' + api + '/' +
+                            "transfer", params = {"to" : address})
+    if (response):
+        responsedata = response.json()["data"]
+        max = responsedata[0]["timestamp"];
+        lasttransfer = responsedata[0]
+        for transfer in responsedata:
+            if (transfer["timestamp"] > max):
+                max = transfer["timestamp"]
+                lasttransfer = transfer
+        return lasttransfer
+    return False
+
+def getlasttransferfrom(address):
+    '''
+
+    :param address:
+    :return:
+
+        A dictionary of info about the latest transfer
+
+    '''
+    response = requests.get(scanendpoint + '/' + api + '/' +
+                            "transfer", params = {"from" : address})
+    if (response):
+        responsedata = response.json()["data"]
+        max = responsedata[0]["timestamp"];
+        lasttransfer = responsedata[0]
+        for transfer in responsedata:
+            if (transfer["timestamp"] > max):
+                max = transfer["timestamp"]
+                lasttransfer = transfer
+        return lasttransfer
+    return False
 
 def getlasttransactionobject(address):
     '''
@@ -132,6 +229,34 @@ def getlasttransactionobject(address):
 
     '''
     transferdata = getlasttransfer(address)
+    if (transferdata):
+        return Transaction(transferdata)
+    return False
+
+def getlasttransactionobjectto(address):
+    '''
+
+    :param address:
+    :return:
+
+        A Transaction object with info about the latest transfer
+
+    '''
+    transferdata = getlasttransferto(address)
+    if (transferdata):
+        return Transaction(transferdata)
+    return False
+
+def getlasttransactionobjectfrom(address):
+    '''
+
+    :param address:
+    :return:
+
+        A Transaction object with info about the latest transfer
+
+    '''
+    transferdata = getlasttransferfrom(address)
     if (transferdata):
         return Transaction(transferdata)
     return False
@@ -148,6 +273,43 @@ def gettransactionobjects(address):
     '''
     transactions = []
     rawtransfers = gettransfers(address)
+
+    if (rawtransfers):
+        for transaction in rawtransfers:
+            transactions.append(Transaction(transaction))
+        return transactions
+    return False
+
+
+def gettransactionobjectsto(address):
+    '''
+
+    :param address:
+    :return:
+
+        A list of Transaction objects for all transactions
+
+    '''
+    transactions = []
+    rawtransfers = gettransfersto(address)
+
+    if (rawtransfers):
+        for transaction in rawtransfers:
+            transactions.append(Transaction(transaction))
+        return transactions
+    return False
+
+def gettransactionobjectsfrom(address):
+    '''
+
+    :param address:
+    :return:
+
+        A list of Transaction objects for all transactions
+
+    '''
+    transactions = []
+    rawtransfers = gettransfersfrom(address)
 
     if (rawtransfers):
         for transaction in rawtransfers:

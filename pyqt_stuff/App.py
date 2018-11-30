@@ -10,9 +10,62 @@ from Bill import bill
 
 WINDOW_SIZE = 1000
 
-class Block(QtGui.QWidget):
+class ToBlock(QtGui.QWidget):
+    def __init__(self, transaction, parent=None):
+        super(ToBlock, self).__init__(parent)
+
+
+class FromBlock(QtGui.QWidget):
+    def __init__(self, transaction, parent=None):
+        super(FromBlock, self).__init__(parent)
+
+class ToAddressList(QtGui.QListWidget):
     def __init__(self, parent=None):
-        super(InventoryList, self).__init__(parent)
+        super(ToAddressList, self).__init__(parent)
+        self.cachedhashes = []
+
+        for transaction in gettransactionobjectsto(user.address):
+            self.cachedhashes.append(transaction.hash)
+            self.addItem(transaction.toStr())
+
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.updateToTransactions)
+        self.timer.start(5000)
+
+    def updateToTransactions(self):
+        newtransactions = gettransactionobjectsto(user.address)
+
+        if (len(newtransactions) > len(self.cachedhashes)):
+            pass
+        else:
+            lastTransaction = getlasttransactionobjectto(user.address)
+            if (lastTransaction.hash not in self.cachedhashes):
+                self.cachedhashes.append(lastTransaction.hash)
+                self.addItem(lastTransaction.toStr())
+
+class FromAddressList(QtGui.QListWidget):
+    def __init__(self, parent=None):
+        super(FromAddressList, self).__init__(parent)
+        self.cachedhashes = []
+
+        for transaction in gettransactionobjectsfrom(user.address):
+            self.cachedhashes.append(transaction.hash)
+            self.addItem(transaction.fromStr())
+
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.updateFromTransactions)
+        self.timer.start(5000)
+
+    def updateFromTransactions(self):
+        newtransactions = gettransactionobjectsfrom(user.address)
+
+        if (len(newtransactions) > len(self.cachedhashes)):
+            pass
+        else:
+            lastTransaction = getlasttransactionobjectfrom(user.address)
+            if (lastTransaction.hash not in self.cachedhashes):
+                self.cachedhashes.append(lastTransaction.hash)
+                self.addItem(lastTransaction.toStr())
 
 class InventoryList(QtGui.QWidget):
     def __init__(self, parent=None):
@@ -89,8 +142,8 @@ class WalletGrid(QtGui.QGridLayout):
         self.power = QtGui.QLabel("")
         self.exchange = QtGui.QLabel("")
 
-        self.toBox = QtGui.QLabel("toBox")
-        self.fromBox = QtGui.QLabel("fromBox")
+        self.toBox = ToAddressList()
+        self.fromBox = FromAddressList()
 
         self.addWidget(self.address, 0, 0, 1, 6)
         self.addWidget(self.balance, 1, 0, 1, 2)
@@ -111,8 +164,8 @@ class WalletGrid(QtGui.QGridLayout):
         self.power.setStyleSheet('.QLabel{{background: rgb({}, {}, {});}}'.format(22, 160, 133))
         self.exchange.setStyleSheet('.QLabel{{background: rgb({}, {}, {});}}'.format(22, 160, 133))
 
-        self.toBox.setStyleSheet('.QLabel{{background: rgb({}, {}, {});}}'.format(133, 193, 233))
-        self.fromBox.setStyleSheet('.QLabel{{background: rgb({}, {}, {});}}'.format(133, 193, 233))
+        self.toBox.setStyleSheet("""QListWidget{background:rgb(133, 193, 233);}""")
+        self.fromBox.setStyleSheet("""QListWidget{background:rgb(133, 193, 233);}""")
 
     def updateWallet(self):
         self.balance.setText(str(getformattedBalance(user.address)))
