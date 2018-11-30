@@ -6,17 +6,22 @@ from User import user
 from Binance import *
 from TronAPI import *
 from Inventory import *
+from Bill import bill
 
 WINDOW_SIZE = 1000
+
+class TallyWidget(QtGui.QWidget):
+    def __init__(self, parent=None):
+        super(TallyWidget, self).__init__(parent)
+        QtGui.QLabel("Fuck my ass", self)
 
 class InventoryList(QtGui.QWidget):
     def __init__(self, parent=None):
         super(InventoryList, self).__init__(parent)
-        self.setStyleSheet("""QListWidget{background:QColor(200,100,150);}""")
+        self.setStyleSheet("""QListWidget{background:QColor(130, 224, 170);}""")
         self.chosenItem = "DummyItem"
 
         self.list = QtGui.QListWidget(self)
-        self.list.setStyleSheet("background-color: (255, 0, 0)")
         self.list.itemClicked.connect(self.choose)
         self.fillInventory()
 
@@ -31,25 +36,37 @@ class InventoryList(QtGui.QWidget):
             self.list.addItem(item)
 
 
-
 class TransGrid(QtGui.QGridLayout):
     def __init__(self, parent=None):
         super(TransGrid, self).__init__(parent)
+        self.setSpacing(100)
         self.list = InventoryList()
-        self.addWidget(self.list)
 
         self.quantity = QtGui.QLineEdit()
-        self.addWidget(self.quantity)
 
         self.addItemButton = QtGui.QPushButton("Push")
         self.addItemButton.clicked.connect(self.addProduct)
-        self.addItemButton.setStyleSheet("color: (130, 224, 170)")
-        self.addWidget(self.addItemButton)
+
+        self.finishTransaction = QtGui.QPushButton("Finish Transaction")
+        self.finishTransaction.clicked.connect(self.finishtransaction)
+
+        self.tally = TallyWidget()
+
+        self.addWidget(self.list, 0, 0, 3, 1)
+        self.addWidget(self.quantity, 3, 0, 1, 1)
+        self.addWidget(self.addItemButton, 4, 0, 1, 1)
+        self.addWidget(self.finishTransaction, 4, 1, 1, 1)
+        self.addWidget(self.tally, 0, 1, 4, 1)
 
 
     def addProduct(self):
-        print(self.list.chosenItem, self.quantity.text())
+        bill.add(self.list.chosenItem, self.quantity.text())
+        bill.printBill()
+        print(bill.sum)
 
+    def finishtransaction(self):
+        print(bill.sum)
+        bill.billtoprinter()
 
 class WalletGrid(QtGui.QGridLayout):
     def __init__(self, parent=None):
@@ -105,8 +122,8 @@ class MainWidget(QtGui.QTabWidget):
         TransGrid(self.transwidget)
 
 
-        self.addTab(self.walletwidget, "Transaction")
-        self.addTab(self.transwidget, "Wallet")
+        self.addTab(self.transwidget, "Transaction")
+        self.addTab(self.walletwidget, "Wallet")
         self.show()
 
 
