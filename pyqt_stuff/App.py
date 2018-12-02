@@ -8,6 +8,7 @@ from TronAPI import *
 from Inventory import *
 from Bill import bill
 from QRCode import *
+from Twilio import *
 #from Printer import *
 
 WINDOW_SIZE = 1000
@@ -42,7 +43,9 @@ class ToAddressList(QtGui.QListWidget):
         else:
             lastTransaction = getlasttransactionobjectto(user.address)
             if (lastTransaction.hash not in self.cachedhashes):
-                QtGui.QMessageBox.information(QtGui.QWidget(),  "Transaction Successful", "Recieved $" + str(formatBalance(lastTransaction.amount)) +  " from " + lastTransaction.toAddress)
+                message = "Recieved $" + str(formatBalance(lastTransaction.amount)) +  " from " + lastTransaction.toAddress
+                QtGui.QMessageBox.information(QtGui.QWidget(), "Transaction Successful", message)
+                sendSMS(message)
                 self.cachedhashes.append(lastTransaction.hash)
                 self.addItem(lastTransaction.toStr())
 
@@ -67,7 +70,10 @@ class FromAddressList(QtGui.QListWidget):
         else:
             lastTransaction = getlasttransactionobjectfrom(user.address)
             if (lastTransaction.hash not in self.cachedhashes):
-                QtGui.QMessageBox.information(QtGui.QWidget(), "Transaction Successful", "Sent $" + str(formatBalance(lastTransaction.amount)) +  " to " + lastTransaction.toAddress)
+
+                message = "Sent $" + str(formatBalance(lastTransaction.amount)) +  " to " + lastTransaction.toAddress
+                QtGui.QMessageBox.information(QtGui.QWidget(), "Transaction Successful", message)
+                sendSMS(message)
                 self.cachedhashes.append(lastTransaction.hash)
                 self.addItem(lastTransaction.toStr())
 
