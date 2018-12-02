@@ -259,7 +259,7 @@ def getlasttransactionobjectfrom(address):
     transferdata = getlasttransferfrom(address)
     if (transferdata):
         return Transaction(transferdata)
-    return False
+    return 0
 
 
 def gettransactionobjects(address):
@@ -278,7 +278,7 @@ def gettransactionobjects(address):
         for transaction in rawtransfers:
             transactions.append(Transaction(transaction))
         return transactions
-    return False
+    return 0
 
 
 def gettransactionobjectsto(address):
@@ -297,7 +297,7 @@ def gettransactionobjectsto(address):
         for transaction in rawtransfers:
             transactions.append(Transaction(transaction))
         return transactions
-    return False
+    return 0
 
 def gettransactionobjectsfrom(address):
     '''
@@ -315,7 +315,7 @@ def gettransactionobjectsfrom(address):
         for transaction in rawtransfers:
             transactions.append(Transaction(transaction))
         return transactions
-    return False
+    return 0
 
 
 def printtransfers(address):
