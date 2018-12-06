@@ -25,7 +25,7 @@ def printOutFinalBill():
 
     printer.feed(2)
 
-    printer.print(' Product   Price    Amount   Total')
+    printer.print(' Product       Price    Quantity')
     # printer.underline = adafruit_thermal_printer.UNDERLINE_THICK
     printer.print('-------------------------------')
     printer.justify = adafruit_thermal_printer.JUSTIFY_CENTER
@@ -38,7 +38,7 @@ def printOutFinalBill():
     printer.bold = False
 
     printer.justify = adafruit_thermal_printer.JUSTIFY_RIGHT
-    printer.print(bill.sum)
+    printer.print(str(bill.sum))
 
     printer.feed(2)
 

@@ -28,7 +28,7 @@ class Bill:
         for item in self.items:
             name = self.items[item].name
             length = len(name)
-            billstring += name +  " "*(40-length) +  self.items[item].quantity +  " x "  +  str(self.items[item].price) + "\n"
+            billstring += name +  " "*(20-length) +  self.items[item].quantity +  " x "  +  str(self.items[item].price) + "\n"
 
         return billstring
 

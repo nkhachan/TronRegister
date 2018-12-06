@@ -7,3 +7,6 @@ qrcode : pip3 install qrcode
 
 
 Register Application
+
+Current Bugs <br />
+Adding the same items multiple times

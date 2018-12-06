@@ -125,6 +125,7 @@ class TransGrid(QtGui.QGridLayout):
         self.sum.clear()
         self.quantity.clear()
         #printOutFinalBill()
+        print(bill.toString())
         bill.clearbill()
         createQR()
 
