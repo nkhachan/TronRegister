@@ -21,7 +21,10 @@ def validresponse(response):
     return False
 
 def validAddress(address):
-    
+    response = requests.get(scanendpoint + '/' + api + '/' + "account", params = {"address" : address})
+    if response.json()["total"] == 1:
+        return True
+    return False
 
 def getbalance(address):
     '''

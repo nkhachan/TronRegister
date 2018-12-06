@@ -4,6 +4,8 @@ sys.path.append(os.getcwd() + "/../img")
 from Login import register, login
 from PyQt4 import QtGui, QtCore
 from App import MainWidget
+from Style import *
+from TronAPI import *
 
 LOGIN_WINDOW_SIZE = 300
 MAIN_WINDOW_SIZE = 1000
@@ -12,7 +14,7 @@ class LoginWindow(QtGui.QMainWindow):
     def __init__(self, app, parent=None):
         super(LoginWindow, self).__init__(parent)
         self.app = app
-        self.setStyleSheet("background-color:#313131;")
+        self.setStyleSheet(DBKG)
         self.setGeometry(0, 0, LOGIN_WINDOW_SIZE + 500, LOGIN_WINDOW_SIZE)
         self.setCentralWidget(LoginWidget(self))
 
@@ -30,7 +32,7 @@ class LoginWindow(QtGui.QMainWindow):
 class LoginWidget(QtGui.QWidget):
     def __init__(self, parent=None):
         super(LoginWidget, self).__init__(parent)
-        self.setStyleSheet("background-color:#313131;")
+        self.setStyleSheet(LBKG)
         LoginGrid(self)
 
     def movetoRegister(self):
@@ -44,21 +46,21 @@ class LoginGrid(QtGui.QGridLayout):
         super(LoginGrid, self).__init__(parent)
 
         self.username = QtGui.QLineEdit("Username")
-        self.username.setStyleSheet("color: rgb(255, 255, 255);")
+        self.username.setStyleSheet("color: rgb(255, 255, 255);" + NO_BORDER)
 
         self.password = QtGui.QLineEdit("Password")
-        self.password.setStyleSheet("color: rgb(255, 255, 255);")
+        self.password.setStyleSheet("color: rgb(255, 255, 255);" + NO_BORDER)
 
         self.submit = QtGui.QPushButton("Login")
         self.submit.clicked.connect(self.loginUser)
-        self.submit.setStyleSheet("color: rgb(255, 255, 255);")
+        self.submit.setStyleSheet("color: rgb(255, 255, 255); " + NO_BORDER)
 
         self.register = QtGui.QPushButton("Register")
         self.register.clicked.connect(self.movetoRegister)
-        self.register.setStyleSheet("color: rgb(255, 255, 255);")
+        self.register.setStyleSheet("color: rgb(255, 255, 255);" + NO_BORDER)
 
         self.forgot = QtGui.QPushButton("Forgot Password")
-        self.forgot.setStyleSheet("color: rgb(255, 255, 255);")
+        self.forgot.setStyleSheet("color: rgb(255, 255, 255);"+ NO_BORDER)
 
         self.addWidget(self.username, 0, 0, 1, 2)
         self.addWidget(self.password, 1, 0, 1, 2)
@@ -78,7 +80,7 @@ class LoginGrid(QtGui.QGridLayout):
 class RegisterWidget(QtGui.QWidget):
     def __init__(self, parent=None):
         super(RegisterWidget, self).__init__(parent)
-        self.setStyleSheet("background-color:#313131;")
+        self.setStyleSheet("background-color:#1C2833;")
         RegisterGrid(self)
 
     def backtoLogin(self):
@@ -89,21 +91,21 @@ class RegisterGrid(QtGui.QGridLayout):
         super(RegisterGrid, self).__init__(parent)
 
         self.username = QtGui.QLineEdit("Username")
-        self.username.setStyleSheet("color: rgb(255, 255, 255);")
+        self.username.setStyleSheet("color: rgb(255, 255, 255);" + NO_BORDER)
 
         self.password = QtGui.QLineEdit("Password")
-        self.password.setStyleSheet("color: rgb(255, 255, 255);")
+        self.password.setStyleSheet("color: rgb(255, 255, 255);" + NO_BORDER)
 
         self.address = QtGui.QLineEdit("TRON Public Address")
-        self.address.setStyleSheet("color: rgb(255, 255, 255);")
+        self.address.setStyleSheet("color: rgb(255, 255, 255);" + NO_BORDER)
 
         self.register = QtGui.QPushButton("Register")
         self.register.clicked.connect(self.registerUser)
-        self.register.setStyleSheet("color: rgb(255, 255, 255);")
+        self.register.setStyleSheet("color: rgb(255, 255, 255);" + NO_BORDER)
 
         self.login = QtGui.QPushButton("Back to Login")
         self.login.clicked.connect(self.backtoLogin)
-        self.login.setStyleSheet("color: rgb(255, 255, 255);")
+        self.login.setStyleSheet("color: rgb(255, 255, 255);" + NO_BORDER)
 
         self.addWidget(self.username)
         self.addWidget(self.password)
@@ -116,7 +118,9 @@ class RegisterGrid(QtGui.QGridLayout):
 
 
     def registerUser(self):
-        register(self.username.text(), self.password.text(), self.address.text())
+        if (validAddress(self.address.text())):
+            register(self.username.text(), self.password.text(), self.address.text())
+            self.backtoLogin()
 
 
 def runLoginApp():
