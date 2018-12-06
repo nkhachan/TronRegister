@@ -10,16 +10,6 @@ from Bill import bill
 from QRCode import *
 #from Printer import *
 
-WINDOW_SIZE = 1000
-
-class ToBlock(QtGui.QWidget):
-    def __init__(self, transaction, parent=None):
-        super(ToBlock, self).__init__(parent)
-
-
-class FromBlock(QtGui.QWidget):
-    def __init__(self, transaction, parent=None):
-        super(FromBlock, self).__init__(parent)
 
 class ToAddressList(QtGui.QListWidget):
     def __init__(self, parent=None):
@@ -182,7 +172,6 @@ class MainWidget(QtGui.QTabWidget):
     def __init__(self, parent=None):
         super(MainWidget, self).__init__(parent)
         self.setStyleSheet("background-color:#313131;")
-        self.setGeometry(0, 0, WINDOW_SIZE + 500, WINDOW_SIZE)
 
         self.setTabPosition(2)
 
@@ -197,15 +186,3 @@ class MainWidget(QtGui.QTabWidget):
         self.addTab(self.transwidget, "Transaction")
         self.addTab(self.walletwidget, "Wallet")
         self.show()
-
-
-
-class MainApp(QtGui.QApplication):
-    def __init__(self, parent=None):
-        super(MainApp, self).__init__(parent)
-
-def runApp():
-    app = MainApp(sys.argv)
-    w = MainWidget()
-    w.show()
-    sys.exit(app.exec_())

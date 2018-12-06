@@ -10,7 +10,7 @@ sys.path.append(os.getcwd() + "/tkinter")
 from QuickDemo import quickDemo
 from FullDemo import fullDemo
 from QRCode import *
-from App import *
+from LoginScreen import runLoginApp
 
 def main():
     val = input("Type either q, f, p for the QuickDemo, FullDemo, and App respectfully\n")
@@ -20,8 +20,7 @@ def main():
     elif (val == "f"):
         fullDemo()
     elif (val == "p"):
-        runApp()
-        #runApp()
+        runLoginApp()
     else:
         val = input("Incorrect Input!")
 

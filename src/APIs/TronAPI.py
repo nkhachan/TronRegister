@@ -20,6 +20,9 @@ def validresponse(response):
         return True
     return False
 
+def validAddress(address):
+    
+
 def getbalance(address):
     '''
 

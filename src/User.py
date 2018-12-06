@@ -1,9 +1,15 @@
+
+
 class User():
-    def __init__(self, name, password, address):
-        self.name = name
+    def __init__(self, username, password, address):
+        self.username = username
         self.password = password
         self.address = address
 
 
+user = User("", "", "")
 
-user = User("some", "user", "TMZtJCtmk7ykoCFn5WTSKbedgv8xFuucfz")
+def setUser(username, password, address):
+    user.username = username
+    user.password = password
+    user.address = address
