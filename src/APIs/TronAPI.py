@@ -20,11 +20,13 @@ def validresponse(response):
         return True
     return False
 
+
 def validAddress(address):
     response = requests.get(scanendpoint + '/' + api + '/' + "account", params = {"address" : address})
     if response.json()["total"] == 1:
         return True
     return False
+
 
 def getbalance(address):
     '''
@@ -265,7 +267,7 @@ def getlasttransactionobjectfrom(address):
     transferdata = getlasttransferfrom(address)
     if (transferdata):
         return Transaction(transferdata)
-    return 0
+    return False
 
 
 def gettransactionobjects(address):
@@ -283,8 +285,7 @@ def gettransactionobjects(address):
     if (rawtransfers):
         for transaction in rawtransfers:
             transactions.append(Transaction(transaction))
-        return transactions
-    return 0
+    return transactions
 
 
 def gettransactionobjectsto(address):

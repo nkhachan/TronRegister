@@ -1,6 +1,3 @@
-from Bill import bill
-from CoinMarketCap import *
-
 from Adafruit_Thermal import *
 import serial
 
