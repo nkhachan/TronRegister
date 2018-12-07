@@ -302,8 +302,7 @@ def gettransactionobjectsto(address):
     if (rawtransfers):
         for transaction in rawtransfers:
             transactions.append(Transaction(transaction))
-        return transactions
-    return 0
+    return transactions
 
 def gettransactionobjectsfrom(address):
     '''
@@ -320,8 +319,7 @@ def gettransactionobjectsfrom(address):
     if (rawtransfers):
         for transaction in rawtransfers:
             transactions.append(Transaction(transaction))
-        return transactions
-    return 0
+    return transactions
 
 
 def printtransfers(address):
