@@ -1,5 +1,5 @@
 from Bill import bill
-from CoinM
+from CoinMarketCap import *
 
 import adafruit_thermal_printer
 import serial
