@@ -1,4 +1,5 @@
 from Bill import bill
+from CoinM
 
 import adafruit_thermal_printer
 import serial
@@ -26,6 +27,7 @@ def printOutFinalBill():
     printer.feed(2)
 
     printer.print(' Product       Price    Quantity')
+    printer.feed(1)
     # printer.underline = adafruit_thermal_printer.UNDERLINE_THICK
     printer.print('-------------------------------')
     printer.justify = adafruit_thermal_printer.JUSTIFY_CENTER
@@ -38,7 +40,7 @@ def printOutFinalBill():
     printer.bold = False
 
     printer.justify = adafruit_thermal_printer.JUSTIFY_RIGHT
-    printer.print(str(bill.sum))
+    printer.print(str(round(bill.trxTotal(), 2)))
 
     printer.feed(2)
 

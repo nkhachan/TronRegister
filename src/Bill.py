@@ -6,6 +6,7 @@
 from Item import *
 from QRCode import *
 from User import user
+from CoinMarketCap import *
 
 class Bill:
 
@@ -22,6 +23,9 @@ class Bill:
 
     def printBill(self):
         print(self.toString())
+
+    def trxTotal(self):
+        return bill.sum/getTRXtoUSD()
 
     def toString(self):
         billstring = ""
