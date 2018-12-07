@@ -26,7 +26,7 @@ def printOutFinalBill():
 
     printer.feed(2)
 
-    printer.print(' Product       Price    Quantity')
+    printer.print(' Product       Quantity    Price')
     printer.feed(1)
     # printer.underline = adafruit_thermal_printer.UNDERLINE_THICK
     printer.print('-------------------------------')
