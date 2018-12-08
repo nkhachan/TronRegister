@@ -1,12 +1,14 @@
 from Bill import bill
 from CoinMarketCap import *
+from User import user
+from QRCode import *
 
 import serial
 import subprocess
 
 
 def printOutFinalBill():
-
+    createQR()
     ThermalPrinter = adafruit_thermal_printer.get_printer_class(2.67)
     uart = serial.Serial("/dev/ttyUSB0", baudrate=9600, timeout=3000)
     printer = ThermalPrinter(uart)
@@ -45,7 +47,7 @@ def printOutFinalBill():
 
     printer.feed(2)
 
-    script = ["python2.7", "src/PrintQRCode.py", bill.toString()]
+    script = ["python2.7", "src/PrintQRCode.py", user.address]
     process = subprocess.Popen(" ".join(script),
                                shell=True,
                                env={"PYTHONPATH": "."})

@@ -8,7 +8,7 @@ from TronAPI import *
 from Inventory import *
 from Bill import bill
 from QRCode import *
-#from Printer import *
+from Printer import *
 
 
 class ToAddressList(QtGui.QListWidget):
@@ -124,7 +124,7 @@ class TransGrid(QtGui.QGridLayout):
         self.tally.clear()
         self.sum.clear()
         self.quantity.clear()
-        #printOutFinalBill()
+        printOutFinalBill()
         print(bill.trxTotal())
         bill.clearbill()
         createQR()
