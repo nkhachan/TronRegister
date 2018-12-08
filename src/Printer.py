@@ -5,6 +5,7 @@ from QRCode import *
 
 import serial
 import subprocess
+import adafruit_thermal_printer
 
 
 def printOutFinalBill():
