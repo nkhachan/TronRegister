@@ -13,7 +13,8 @@ qr = qrcode.QRCode(
     box_size=10,
     border=4,
 )
-qr.add_data(sys.argv[1])
+#qr.add_data(sys.argv[1])
+qr.add_data("TMZtJCtmk7ykoCFn5WTSKbedgv8xFuucfz")
 qr.make(fit=True)
 
 img = qr.make_image(fill_color="black", back_color="white")
