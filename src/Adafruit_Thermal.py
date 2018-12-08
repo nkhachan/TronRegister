@@ -504,11 +504,15 @@ class Adafruit_Thermal(Serial):
 		self.writeBytes(27, 45, 0)
 
 	def printBitmap(self, w, h, bitmap, LaaT=False):
+		print("Length of bitmap is " + str(len(bitmap)))
 		rowBytes = (w + 7) / 8  # Round up to next byte boundary
 		if rowBytes >= 48:
 			rowBytesClipped = 48  # 384 pixels max width
 		else:
 			rowBytesClipped = rowBytes
+
+		print("row Bytes " + str(rowBytes))
+		print("row Bytes Clipped " + str(rowBytesClipped))
 
 		# if LaaT (line-at-a-time) is True, print bitmaps
 		# scanline-at-a-time (rather than in chunks).

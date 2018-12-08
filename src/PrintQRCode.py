@@ -5,7 +5,7 @@ import serial
 
 printer = Adafruit_Thermal("/dev/ttyUSB0", 9600, timeout=3000)
 
-import qr
+import qrcode
 
 qr = qrcode.QRCode(
     version=1,
@@ -17,5 +17,5 @@ qr.add_data(sys.argv[1])
 qr.make(fit=True)
 
 img = qr.make_image(fill_color="black", back_color="white")
-print(img)
-printer.printBitmap(width, height, data)
+dalist = [int(i/255) for i in dalist]
+printer.printBitmap(370, 370, dalist)
