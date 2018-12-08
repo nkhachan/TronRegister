@@ -5,7 +5,6 @@
 '''
 from Item import *
 from QRCode import *
-from User import user
 from CoinMarketCap import *
 
 class Bill:
