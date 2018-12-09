@@ -114,7 +114,7 @@ class TransGrid(QtGui.QGridLayout):
 
 
     def addProduct(self):
-        bill.add(self.list.chosenItem, self.quantity.text())
+        bill.add(self.list.chosenItem, int(self.quantity.text()))
         bill.printBill()
         self.sum.setText(str(bill.sum))
         self.tally.addItem(self.list.chosenItem + " "*5 + self.quantity.text() + "  x  " + inventory.items[self.list.chosenItem])

@@ -13,14 +13,14 @@ class Item:
 
     def __init__(self, name, quantity):
         self.name     = name
-        self.quantity = quantity
+        self.quantity = int(quantity)
         if name in inventory.items:
             self.price = inventory.items[name]
         else:
             raise LookupError("This Item does not have a price!")
 
     def add(self, quantity):
-        self.quantity += quantity
+        self.quantity += int(quantity)
 
 
     def sub(self, quantity):
