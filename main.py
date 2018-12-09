@@ -9,7 +9,6 @@ sys.path.append(os.getcwd() + "/tkinter")
 
 from QuickDemo import quickDemo
 from FullDemo import fullDemo
-from QRCode import *
 from LoginScreen import runLoginApp
 
 def main():

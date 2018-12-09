@@ -1,7 +1,6 @@
 from Bill import bill
 from CoinMarketCap import *
 from User import user
-from QRCode import *
 
 import serial
 import subprocess

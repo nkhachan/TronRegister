@@ -7,7 +7,6 @@ from CoinMarketCap import *
 from TronAPI import *
 from Inventory import *
 from Bill import bill
-from QRCode import *
 from Printer import *
 
 
@@ -125,9 +124,7 @@ class TransGrid(QtGui.QGridLayout):
         self.sum.clear()
         self.quantity.clear()
         printOutFinalBill()
-        print(bill.trxTotal())
         bill.clearbill()
-        createQR()
 
 class WalletGrid(QtGui.QGridLayout):
     def __init__(self, parent=None):
