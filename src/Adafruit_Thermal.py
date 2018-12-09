@@ -53,7 +53,7 @@ class Adafruit_Thermal(Serial):
 	printMode       =     0
 	defaultHeatTime =   120
 	firmwareVersion =   268
-	writeToStdout   = False
+	writeToStdout   = True
 
 	def __init__(self, *args, **kwargs):
 		# NEW BEHAVIOR: if no parameters given, output is written
@@ -504,16 +504,11 @@ class Adafruit_Thermal(Serial):
 		self.writeBytes(27, 45, 0)
 
 	def printBitmap(self, w, h, bitmap, LaaT=False):
-		print("Length of bitmap is " + str(len(bitmap)))
 		rowBytes = (w + 7) / 8  # Round up to next byte boundary
 		if rowBytes >= 48:
 			rowBytesClipped = 48  # 384 pixels max width
 		else:
 			rowBytesClipped = rowBytes
-
-		print("row Bytes " + str(rowBytes))
-		print("row Bytes Clipped " + str(rowBytesClipped))
-
 		# if LaaT (line-at-a-time) is True, print bitmaps
 		# scanline-at-a-time (rather than in chunks).
 		# This tends to make for much cleaner printing
@@ -531,7 +526,6 @@ class Adafruit_Thermal(Serial):
 
 			# Timeout wait happens here
 			self.writeBytes(18, 42, chunkHeight, rowBytesClipped)
-
 			for y in range(chunkHeight):
 				for x in range(rowBytesClipped):
 					if self.writeToStdout:

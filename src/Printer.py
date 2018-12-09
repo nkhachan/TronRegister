@@ -43,10 +43,9 @@ def printOutFinalBill():
     printer.bold = False
 
     printer.justify = adafruit_thermal_printer.JUSTIFY_RIGHT
-    printer.print(str(round(bill.trxTotal(), 2)))
+    printer.print(str(round(bill.trxTotal(), 2)) + " TRX")
 
     printer.feed(2)
-
     script = ["python2.7", "src/PrintQRCode.py", user.address]
     process = subprocess.Popen(" ".join(script),
                                shell=True,
